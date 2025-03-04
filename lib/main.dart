@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:assets_audio_player/assets_audio_player.dart';
 
 void main() {
   runApp(MyApp());
@@ -19,7 +20,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class StartScreen extends StatelessWidget {
+class StartScreen extends StatefulWidget {
+  @override
+  _StartScreenState createState() => _StartScreenState();
+}
+
+class _StartScreenState extends State<StartScreen> {
+  final AssetsAudioPlayer _audioPlayer = AssetsAudioPlayer();
+
+  void _playSound() async {
+    await _audioPlayer.open(
+      Audio('assets/animations/Tap.mp3'), // Use the correct case
+      autoStart: true,
+    );
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,6 +73,7 @@ class StartScreen extends StatelessWidget {
                   SizedBox(height: 10),
                   GestureDetector(
                     onTap: () {
+                      _playSound();
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => GameScreen()),
@@ -73,7 +95,27 @@ class StartScreen extends StatelessWidget {
   }
 }
 
-class GameScreen extends StatelessWidget {
+class GameScreen extends StatefulWidget {
+  @override
+  _GameScreenState createState() => _GameScreenState();
+}
+
+class _GameScreenState extends State<GameScreen> {
+  final AssetsAudioPlayer _audioPlayer = AssetsAudioPlayer();
+
+  void _playSound() async {
+    await _audioPlayer.open(
+      Audio('assets/animations/Tap.mp3'), // Use the correct case
+      autoStart: true,
+    );
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,6 +158,7 @@ class GameScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     ),
                     onPressed: () {
+                      _playSound();
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => ThirdScreen()),
@@ -136,8 +179,27 @@ class GameScreen extends StatelessWidget {
   }
 }
 
-class ThirdScreen extends StatelessWidget {
+class ThirdScreen extends StatefulWidget {
+  @override
+  _ThirdScreenState createState() => _ThirdScreenState();
+}
+
+class _ThirdScreenState extends State<ThirdScreen> {
   final int cellCount = 0; // Default cell count
+  final AssetsAudioPlayer _audioPlayer = AssetsAudioPlayer();
+
+  void _playSound() async {
+    await _audioPlayer.open(
+      Audio('assets/animations/Tap.mp3'), // Use the correct case
+      autoStart: true,
+    );
+  }
+
+  @override
+  void dispose() {
+    _audioPlayer.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,6 +233,7 @@ class ThirdScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                     ),
                     onPressed: () {
+                      _playSound();
                       // Add your desired action for the Begin button here.
                     },
                     child: Text(
